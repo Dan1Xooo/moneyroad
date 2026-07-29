@@ -1,0 +1,94 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { ArrowUpRight } from "@/components/icons";
+import { CtaBand } from "@/components/CtaBand";
+import { PageIntro } from "@/components/PageIntro";
+
+export const metadata: Metadata = {
+  title: "О MoneyRoad",
+  description:
+    "О проекте MoneyRoad и подходе Данила к работе с финансовыми предложениями.",
+  alternates: { canonical: "/about" },
+};
+
+const links = [
+  ["Telegram-канал", "Новости, предложения и разборы", "https://t.me/MRMoneyRoad"],
+  ["Отзывы", "Опубликованные результаты участников", "https://t.me/MoneyRoadOtzivi"],
+  ["Личные сообщения", "Уточнить условия у Данила", "https://t.me/DanIlMoneyRoad"],
+];
+
+export default function AboutPage() {
+  return (
+    <main>
+      <section className="page-hero about-hero">
+        <div className="container about-hero-grid">
+          <PageIntro
+            eyebrow="О проекте"
+            title="MoneyRoad — дополнительный заработок на финансовых продуктах"
+          />
+          <div className="about-logo-composition">
+            <div className="about-logo-card">
+              <Image
+                src="/mr-logo.png"
+                alt="Логотип MoneyRoad"
+                width={420}
+                height={420}
+                priority
+                unoptimized
+              />
+            </div>
+            <span className="about-wordmark">MONEYROAD</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-story">
+        <div className="container about-story-grid">
+          <div>
+            <p className="eyebrow">Основатель</p>
+            <h2>Данил, 19 лет</h2>
+          </div>
+          <div className="story-text">
+            <p>
+              Меня зовут Данил, мне 19 лет. Более года я работаю с банковскими и
+              финансовыми предложениями и более года являюсь индивидуальным
+              предпринимателем.
+            </p>
+            <p>
+              Я создал MoneyRoad, чтобы помогать людям находить понятные способы
+              дополнительного заработка и получать выгоду от актуальных финансовых
+              предложений.
+            </p>
+            <p>
+              Я заранее объясняю условия, сообщаю размер выплаты и сопровождаю человека
+              на протяжении работы. При этом каждый пользователь самостоятельно
+              принимает решение об оформлении продукта и самостоятельно управляет
+              своими счетами и банковскими приложениями.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section contact-section dark-section">
+        <div className="container">
+          <div className="section-heading">
+            <p className="eyebrow yellow">MoneyRoad в Telegram</p>
+            <h2>Выберите удобный канал связи</h2>
+          </div>
+          <div className="contact-grid">
+            {links.map(([title, description, href]) => (
+              <a key={title} href={href} target="_blank" rel="noreferrer">
+                <div>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </div>
+                <ArrowUpRight />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+      <CtaBand />
+    </main>
+  );
+}
