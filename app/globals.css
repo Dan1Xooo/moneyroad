@@ -4040,6 +4040,142 @@ h3 {
   }
 }
 
+/* Balanced project cards across mobile and desktop */
+.project-story-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.project-story-highlights span {
+  border: 1px solid rgba(17, 17, 15, 0.12);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(255, 210, 28, 0.16);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 780;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.project-story-card-2 .project-story-highlights span {
+  border-color: rgba(255, 210, 28, 0.28);
+  background: rgba(255, 210, 28, 0.1);
+  color: #ffe477;
+}
+
+@media (min-width: 820px) {
+  .home-hero-simple {
+    padding: 70px 0 76px !important;
+  }
+
+  .home-hero-copy {
+    max-width: 980px;
+  }
+
+  .home-hero-content h1 {
+    max-width: 1050px;
+    margin-bottom: 18px;
+    font-size: clamp(3.4rem, 5vw, 4.7rem);
+    line-height: 0.98;
+  }
+
+  .home-hero-content .hero-subtitle {
+    max-width: 820px;
+    font-size: 1.02rem;
+    line-height: 1.58;
+  }
+
+  .projects-intro-section {
+    padding: 58px 0 62px !important;
+  }
+
+  .projects-intro {
+    max-width: 1220px !important;
+    grid-template-columns: minmax(0, 760px) auto !important;
+    align-items: end !important;
+    gap: 12px 42px !important;
+  }
+
+  .projects-intro .eyebrow {
+    grid-column: 1 / -1;
+  }
+
+  .projects-intro h2 {
+    max-width: 760px;
+    font-size: clamp(2.55rem, 4vw, 3.55rem);
+    line-height: 1.03;
+  }
+
+  .telegram-inline-link {
+    justify-self: end;
+    margin-bottom: 6px;
+  }
+
+  .project-story-section {
+    padding: 62px 0 72px !important;
+  }
+
+  .project-story-list {
+    gap: 22px !important;
+  }
+
+  .project-story-card {
+    grid-template-columns: minmax(270px, 0.52fr) minmax(0, 1fr) !important;
+    gap: 34px !important;
+    align-items: start !important;
+    padding: 34px !important;
+  }
+
+  .project-story-heading {
+    position: relative;
+    top: auto;
+  }
+
+  .project-story-heading h2 {
+    max-width: 420px;
+    font-size: clamp(2.25rem, 3.15vw, 3rem);
+    line-height: 1.03;
+  }
+
+  .project-story-card-3 .project-story-heading h2 {
+    font-size: clamp(2.05rem, 2.7vw, 2.55rem);
+  }
+
+  .project-story-copy {
+    max-width: 760px;
+    align-self: center;
+    gap: 13px;
+  }
+
+  .project-story-copy p {
+    font-size: 0.98rem;
+    line-height: 1.64;
+  }
+
+  .home-safety-note {
+    padding: 68px 0 54px;
+  }
+
+  .calculator-bridge-section {
+    padding-bottom: 58px;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-story-highlights {
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .project-story-highlights span {
+    font-size: 0.68rem;
+    padding: 6px 8px;
+  }
+}
+
 /* Compact homepage rhythm */
 .projects-intro-section {
   padding: 42px 0 44px;
