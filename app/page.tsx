@@ -1,346 +1,173 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, Shield } from "@/components/icons";
-import { CtaBand } from "@/components/CtaBand";
-import { activeOffers, formatMoney } from "@/src/data/offers";
 
-const debitTotal = activeOffers
-  .filter((offer) => offer.category === "debit")
-  .reduce((sum, offer) => sum + offer.payout, 0);
-const savingsPayout =
-  activeOffers.find((offer) => offer.category === "savings")?.payout ?? 0;
-const businessPayout =
-  activeOffers.find((offer) => offer.category === "business")?.payout ?? 0;
-const loanPayout = activeOffers.find((offer) => offer.category === "mfo")?.payout ?? 0;
-const exampleTotal = debitTotal + savingsPayout + businessPayout + loanPayout * 2;
-
-const trustCards = [
-  ["Кто ведёт", "Данил, автор MoneyRoad"],
-  ["Формат", "Telegram-канал, личка и сайт"],
-  ["Главное правило", "Без паролей, SMS-кодов и доступа"],
-];
-
-const directionCards = [
+const projectBlocks = [
   {
-    number: "01",
-    label: "Банковские карты",
-    note: "Дебетовые карты и похожие предложения для новых клиентов банков.",
+    eyebrow: "Проект 01",
+    title: "Заработок на отзывах",
+    text: [
+      "Заработок строится на отзывах крупным компаниям, а именно компаниям банков. Механика работы такая: пишем в поддержку банка с каким-либо вопросом, после чего общаемся с оператором, задаём ему уточняющие вопросы на протяжении 5–7 минут.",
+      "Далее скриним диалог переписки и идём оставлять отзыв компании о том, что у них очень отзывчивая поддержка и компетентные сотрудники, прикрепляя подтверждения скринами. Готово. Ждём, пока нам перечислят деньги за написание 5-звёздочного отзыва.",
+      "А что по оплате? Т-Банк платит 1000 ₽ за 1 отзыв, Альфа-Банк — 1450 ₽ за 3 отзыва, и ещё пара-тройка банков платит 500–1000 ₽ за отзыв. Если же у вас нет карты от Альфа-Банка или Т-Банка, вы можете заработать 2000 ₽ сверху. Подробности у меня в Telegram-канале.",
+    ],
   },
   {
-    number: "02",
-    label: "Счета и накопления",
-    note: "Счета и накопительные продукты, где важно заранее проверить условия.",
+    eyebrow: "Проект 02",
+    title: "Пассивный заработок за счёт денежных средств банков",
+    text: [
+      "Кратко: это финансовая стратегия, при которой заёмщик оплачивает покупки деньгами банка по кредитной карте с длинным беспроцентным периодом, а собственные деньги держит на накопительном счёте или вкладе.",
+      "В результате человек получает доход от процентов за свои средства, а долг по карте закрывает до истечения льготного периода. Этот способ заработка подойдёт совершеннолетним.",
+    ],
   },
   {
-    number: "03",
-    label: "РКО для бизнеса",
-    note: "Пакетные предложения для тех, кому подходит оформление бизнес-продуктов.",
-  },
-  {
-    number: "04",
-    label: "Промокоды и скидки",
-    note: "Полезные акции от сервисов, где можно сэкономить или получить бонус.",
-  },
-  {
-    number: "05",
-    label: "Простые задания",
-    note: "Небольшая подработка и действия, которые можно разобрать до старта.",
+    eyebrow: "Проект 03",
+    title: "Заработок на банковских картах, бизнес-картах, брокерских счетах и прочее",
+    text: [
+      "Это самый простой способ заработка, прямиком через общение в личных сообщениях со мной. Механика взаимодействия следующая: вы делаете какой-либо продукт по моей реферальной ссылке, после чего совершаете целевое действие, иными словами условия для получения вознаграждения.",
+      "Условия могут быть у каждого продукта разными. К примеру, у дебетовых карт в частности это совершение покупки, используя карту, на сумму от 100 ₽. У бизнес-карт — это пополнение от 1000 ₽ и так далее. Для банка клиент должен быть новым.",
+      "Почему я плачу за оформление банковских продуктов? Всё довольно просто. Банкам нужны новые клиенты, поэтому они платят партнёрам комиссионное вознаграждение за оформленные продукты и выполненные условия.",
+      "Я привожу банкам клиентов, получаю комиссию и частью этой суммы делюсь с вами. В итоге: банк получает нового клиента, вы получаете вознаграждение, я получаю свою часть комиссии за привлечение и сопровождение.",
+      "Сразу скажу: вы всё оформляете самостоятельно. Я не прошу пароли и SMS-коды, а уж тем более не скупаю ваши карты.",
+    ],
   },
 ];
 
-const safetyPoints = [
-  "Вы всё оформляете самостоятельно",
-  "Я не прошу пароли и SMS-коды",
-  "Нет доступа к вашим банковским приложениям",
-  "Условия и сумма обсуждаются заранее",
-  "От любого предложения можно отказаться до оформления",
+const summaryPoints = [
+  "экономия на доставке продуктов",
+  "заработок в интернете на отзывах",
+  "пассивный заработок за счёт денежных средств банка",
+  "банковские карты, бизнес-карты, брокерские счета и другие продукты",
 ];
 
-const processNotes = [
-  "Сумма в калькуляторе предварительная.",
-  "Условия банков и сервисов могут меняться.",
-  "Вознаграждение появляется после выполнения условий и подтверждения результата.",
+const finalLinks = [
+  {
+    label: "Можете ознакомиться с отзывами",
+    href: "/reviews",
+    external: false,
+  },
+  {
+    label: "За подробностями в Telegram-канал",
+    href: "https://t.me/MRMoneyRoad",
+    external: true,
+  },
+  {
+    label: "Или ко мне в личные сообщения",
+    href: "https://t.me/DanIlMoneyRoad",
+    external: true,
+  },
+  {
+    label: "Также можете рассчитать предварительную сумму заработка на банковских продуктах через калькулятор",
+    href: "/calculator",
+    external: false,
+  },
 ];
-
-function HeroVisual() {
-  return (
-    <div className="hero-visual trust-visual" aria-label="Кратко о MoneyRoad">
-      <div className="hero-glow" />
-      <div className="trust-card trust-card-main">
-        <div className="trust-card-top">
-          <span className="trust-avatar">
-            <Image
-              src="/mr-logo-header.webp"
-              alt=""
-              width={70}
-              height={70}
-              priority
-              unoptimized
-            />
-          </span>
-          <div>
-            <span>MoneyRoad</span>
-            <strong>личный проект Данила</strong>
-          </div>
-        </div>
-        <p>
-          Помогаю спокойно разобраться в банковских предложениях, выгодах,
-          промокодах и простых вариантах подработки.
-        </p>
-      </div>
-      <div className="trust-card trust-card-side">
-        <span>Безопасный порядок</span>
-        <strong>без передачи доступа</strong>
-      </div>
-      <div className="trust-card trust-card-preview">
-        <span>Предварительный расчёт</span>
-        <strong>до {formatMoney(exampleTotal)}</strong>
-        <p>Пример зависит от возраста, статуса нового клиента и доступности условий.</p>
-      </div>
-    </div>
-  );
-}
 
 export default function Home() {
   return (
     <main>
-      <section className="hero dark-section">
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <div className="hero-brand">
-              <span className="hero-logo">
-                <Image
-                  src="/mr-logo-header.webp"
-                  alt="Логотип MR"
-                  width={84}
-                  height={84}
-                  priority
-                  unoptimized
-                />
-              </span>
-              <span>MoneyRoad</span>
-            </div>
-            <h1>MoneyRoad — банковские выгоды, промокоды и простая подработка</h1>
-            <p className="hero-subtitle">
-              Меня зовут Данил. Я веду MoneyRoad и помогаю людям разбираться в
-              актуальных предложениях от банков и сервисов: объясняю условия,
-              подсказываю безопасный порядок действий и сопровождаю до результата.
-            </p>
-            <p className="hero-safety-note">
-              Без передачи паролей, SMS-кодов и доступа к вашим банковским приложениям.
-            </p>
-            <div className="hero-actions">
-              <Link href="/calculator" className="button button-yellow button-large">
-                Рассчитать сумму <ArrowRight />
-              </Link>
-              <a
-                href="https://t.me/DanIlMoneyRoad"
-                target="_blank"
-                rel="noreferrer"
-                className="button button-ghost button-large"
-              >
-                Написать Данилу <ArrowUpRight />
-              </a>
-            </div>
-            <a
-              href="https://t.me/MoneyRoadOtzivi"
-              target="_blank"
-              rel="noreferrer"
-              className="hero-review-link"
-            >
-              Отзывы участников в Telegram <ArrowUpRight />
-            </a>
+      <section className="hero home-hero-simple dark-section">
+        <div className="container home-hero-content">
+          <div className="hero-brand">
+            <span className="hero-logo">
+              <Image
+                src="/mr-logo-header.webp"
+                alt="Логотип MR"
+                width={84}
+                height={84}
+                priority
+                unoptimized
+              />
+            </span>
+            <span>MoneyRoad</span>
           </div>
-          <HeroVisual />
-        </div>
-      </section>
-
-      <section className="section intro-section">
-        <div className="container intro-grid">
-          <div>
-            <p className="eyebrow">Что такое MoneyRoad</p>
-            <h2>Не банк и не безликая платформа, а проект, где помогают разобраться</h2>
-          </div>
-          <div className="intro-copy">
-            <p>
-              MoneyRoad — это мой проект, где я собираю актуальные предложения от
-              банков и сервисов, проверяю условия и помогаю людям получить выгоду за
-              выполненные действия: оформление карт, счетов, РКО, промокоды и другие
-              предложения.
-            </p>
-            <p>
-              Я заранее объясняю, что нужно сделать, какие условия важно учитывать и
-              когда можно ожидать подтверждения результата.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section danil-section">
-        <div className="container danil-card">
-          <div>
-            <p className="eyebrow yellow">Кто ведёт проект</p>
-            <h2>Проект ведёт Данил</h2>
-          </div>
-          <div>
-            <p>
-              Я больше года работаю с банковскими и партнёрскими предложениями, веду
-              Telegram-канал MoneyRoad и собираю отзывы участников в отдельном канале.
-            </p>
-            <p>
-              Мне важно, чтобы человек понимал условия до оформления, а не разбирался
-              уже после.
-            </p>
-            <Link href="/about" className="text-link">
-              Подробнее о проекте <ArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section explanation-section">
-        <div className="container explanation-grid">
-          <div className="big-question">
-            <span>?</span>
-            <p>На чём строится выгода</p>
-          </div>
-          <div className="explanation-copy">
-            <p className="eyebrow">Простыми словами</p>
-            <h2>Банки и сервисы платят за подтверждённые действия</h2>
-            <p>
-              Банки и сервисы платят партнёрам за новых клиентов и выполненные целевые
-              действия. Человек оформляет продукт самостоятельно, результат
-              подтверждается, после этого появляется вознаграждение.
-            </p>
-            <p>
-              MoneyRoad помогает заранее разобраться в условиях и понять, какие варианты
-              могут подойти именно вам.
-            </p>
-            <div className="process-notes">
-              {processNotes.map((note) => (
-                <div key={note}>
-                  <Check />
-                  <span>{note}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section control-section safety-home-section">
-        <div className="container control-grid">
-          <div className="control-copy">
-            <p className="eyebrow">Почему это безопасно</p>
-            <h2>Оформление остаётся под вашим контролем</h2>
-            <p>
-              Я могу объяснить порядок действий и условия, но решение об оформлении вы
-              принимаете сами. Доступ к деньгам, приложениям и личным кодам не нужен.
-            </p>
-            <Link href="/safety" className="button button-dark">
-              Подробнее о безопасности <Shield />
-            </Link>
-          </div>
-          <div className="check-list">
-            {safetyPoints.map((point) => (
+          <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
+          <p className="hero-subtitle">
+            Всем привет! Меня зовут Данил. Я являюсь основателем своего проекта
+            MoneyRoad. В своём проекте я показываю людям, как можно экономить деньги
+            на доставке продуктов, как можно зарабатывать в интернете на отзывах, как
+            получать пассивный заработок за счёт денежных средств самого банка и как
+            можно заработать на банковских картах, бизнес-картах, брокерских счетах и
+            т.п.
+          </p>
+          <div className="hero-topic-grid" aria-label="Основные направления MoneyRoad">
+            {summaryPoints.map((point) => (
               <div key={point}>
-                <span className="check-icon">
-                  <Check />
-                </span>
-                <p>{point}</p>
+                <Check />
+                <span>{point}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section categories-section">
-        <div className="container">
-          <div className="section-heading split-heading">
-            <div>
-              <p className="eyebrow">Какие направления бывают</p>
-              <h2>От банковских карт до промокодов и простых заданий</h2>
-            </div>
-            <p>
-              Направления отличаются условиями, возрастными ограничениями и сроками
-              подтверждения. На старте лучше спокойно проверить, что подходит именно вам.
-            </p>
-          </div>
-          <div className="category-grid direction-grid">
-            {directionCards.map((item) => (
-              <article className="category-card direction-card" key={item.label}>
-                <span className="card-number">{item.number}</span>
-                <div>
-                  <h3>{item.label}</h3>
-                  <p>{item.note}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+      <section className="section projects-intro-section">
+        <div className="container projects-intro">
+          <p className="eyebrow">Кратко о проектах</p>
+          <h2>
+            Кратко пробежимся по моим проектам, более подробно всё расписано у меня в
+            Telegram-канале
+          </h2>
         </div>
       </section>
 
-      <section className="section calculator-hook-section dark-section">
-        <div className="container calculator-hook-grid">
-          <div>
-            <p className="eyebrow yellow">Предварительный расчёт</p>
-            <h2>Хочешь понять, что доступно именно тебе?</h2>
-            <p>
-              Ответь на несколько вопросов — калькулятор покажет предварительную сумму
-              и подходящие направления. После этого можно написать мне и уточнить
-              актуальные условия.
-            </p>
-            <Link href="/calculator" className="button button-yellow button-large">
-              Рассчитать сумму <ArrowRight />
-            </Link>
-          </div>
-          <div className="hook-facts">
-            {trustCards.map(([label, value]) => (
-              <div key={label}>
-                <span>{label}</span>
-                <strong>{value}</strong>
+      <section className="section project-story-section">
+        <div className="container project-story-list">
+          {projectBlocks.map((block) => (
+            <article className="project-story-card" key={block.title}>
+              <div className="project-story-heading">
+                <p className="eyebrow">{block.eyebrow}</p>
+                <h2>{block.title}</h2>
               </div>
-            ))}
+              <div className="project-story-copy">
+                {block.text.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section home-safety-note">
+        <div className="container home-safety-card">
+          <div className="safety-mark">
+            <Shield />
+          </div>
+          <div>
+            <p className="eyebrow">Важный принцип</p>
+            <h2>Вы всё оформляете самостоятельно</h2>
+            <p>
+              Я могу объяснить механику, условия и порядок действий, но не прошу
+              пароли, SMS-коды, доступ к банковским приложениям и не скупаю карты.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="section reviews-preview-section">
-        <div className="container reviews-preview-grid">
-          <div>
-            <p className="eyebrow">Отзывы</p>
-            <h2>Отзывы я собираю отдельно</h2>
-            <p>
-              Так любой человек может посмотреть реальные результаты и сообщения
-              участников. На сайте есть страница с видео, а больше материалов собрано в
-              Telegram-канале отзывов.
-            </p>
-            <div className="preview-actions">
-              <Link href="/reviews" className="button button-dark">
-                Страница отзывов
-              </Link>
+      <section className="section home-final-links-section">
+        <div className="container home-final-links">
+          {finalLinks.map((item) =>
+            item.external ? (
               <a
-                href="https://t.me/MoneyRoadOtzivi"
+                key={item.label}
+                href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="button button-outline"
+                className="home-final-link"
               >
-                Отзывы в Telegram <ArrowUpRight />
+                <span>{item.label}</span>
+                <ArrowUpRight />
               </a>
-            </div>
-          </div>
-          <div className="review-preview-card">
-            <span>Реальные материалы</span>
-            <strong>без выдуманных имён и сумм</strong>
-            <p>Перед оформлением можно открыть отзывы и спокойно оценить проект.</p>
-          </div>
+            ) : (
+              <Link key={item.label} href={item.href} className="home-final-link">
+                <span>{item.label}</span>
+                <ArrowRight />
+              </Link>
+            ),
+          )}
         </div>
       </section>
-
-      <CtaBand
-        title="Если хочешь разобраться по себе"
-        text="Пройди калькулятор или напиши мне в Telegram — уточним актуальные условия и подходящие варианты без спешки."
-      />
     </main>
   );
 }

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 export function MobileCalculatorBar() {
   const pathname = usePathname();
 
-  if (pathname === "/calculator") {
+  if (pathname === "/" || pathname === "/calculator") {
     return null;
   }
 
