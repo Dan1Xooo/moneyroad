@@ -3482,7 +3482,7 @@ h3 {
   padding: 62px 0 84px;
   background:
     radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.08), transparent 38%),
-    radial-gradient(circle at 100% 10%, rgba(246, 197, 82, 0.08), transparent 32%),
+    radial-gradient(circle at 100% 10%, rgba(255, 210, 28, 0.08), transparent 32%),
     #11110f;
 }
 
@@ -3542,7 +3542,7 @@ h3 {
 }
 
 .text-accent {
-  color: #f4c95d;
+  color: var(--yellow);
   font-weight: 760;
 }
 
@@ -3598,7 +3598,7 @@ h3 {
 .payout-card strong {
   display: block;
   margin-top: 10px;
-  color: #f4c95d;
+  color: var(--yellow);
   font-size: 1.8rem;
   line-height: 1;
 }
@@ -3624,7 +3624,7 @@ h3 {
 .premium-panel-note svg {
   width: 18px;
   flex: 0 0 auto;
-  color: #f4c95d;
+  color: var(--yellow);
 }
 
 .premium-sums-section {
@@ -3698,7 +3698,7 @@ h3 {
 
 .home-safety-note {
   background:
-    radial-gradient(circle at 80% 0%, rgba(246, 197, 82, 0.12), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(255, 210, 28, 0.12), transparent 32%),
     var(--ink);
 }
 
@@ -3819,7 +3819,7 @@ h3 {
 }
 
 .text-accent {
-  color: #f4c95d;
+  color: var(--yellow);
   font-weight: 780;
 }
 
@@ -3915,16 +3915,16 @@ h3 {
 }
 
 .home-safety-card .eyebrow {
-  color: #f4c95d;
+  color: var(--yellow);
 }
 
-.safety-emphasis {
-  margin-top: 18px;
-  border: 1px solid rgba(244, 201, 93, 0.28);
+.home-safety-card p.safety-emphasis:not(.eyebrow) {
+  margin-top: 28px;
+  border: 1px solid rgba(255, 210, 28, 0.25);
   border-radius: 18px;
   padding: 15px 16px;
-  background: rgba(244, 201, 93, 0.09);
-  color: #f8e4a4 !important;
+  background: rgba(255, 210, 28, 0.08);
+  color: #ffe477 !important;
   font-weight: 780;
   line-height: 1.55;
 }
@@ -3937,17 +3937,17 @@ h3 {
 .calculator-bridge {
   display: grid;
   gap: 20px;
-  border: 1px solid rgba(244, 201, 93, 0.2);
+  border: 1px solid rgba(255, 210, 28, 0.22);
   border-radius: 24px;
   padding: 28px;
   background:
-    radial-gradient(circle at 88% 8%, rgba(244, 201, 93, 0.18), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(255, 210, 28, 0.2), transparent 34%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.26);
 }
 
 .calculator-bridge .eyebrow {
-  color: #f4c95d;
+  color: var(--yellow);
 }
 
 .calculator-bridge h2 {
@@ -3973,16 +3973,17 @@ h3 {
   gap: 8px;
   border-radius: 999px;
   padding: 14px 16px;
-  background: #f4c95d;
+  background: var(--yellow);
   color: var(--ink);
   font-weight: 820;
   line-height: 1.2;
-  box-shadow: 0 16px 40px rgba(244, 201, 93, 0.2);
+  box-shadow: 0 9px 30px rgba(255, 210, 28, 0.16);
 }
 
 .calculator-bridge-link:hover {
   transform: translateY(-1px);
-  background: #f8d779;
+  background: #ffdc48;
+  box-shadow: 0 13px 34px rgba(255, 210, 28, 0.24);
 }
 
 .calculator-bridge-link svg {
@@ -4006,12 +4007,12 @@ h3 {
 }
 
 .home-final-link:hover {
-  border-color: rgba(244, 201, 93, 0.36);
+  border-color: rgba(255, 210, 28, 0.36);
   background: rgba(255, 255, 255, 0.07);
 }
 
 .home-final-link svg {
-  color: #f4c95d;
+  color: var(--yellow);
 }
 
 @media (min-width: 640px) {
