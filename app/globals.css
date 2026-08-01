@@ -3481,9 +3481,9 @@ h3 {
   min-height: auto;
   padding: 62px 0 84px;
   background:
-    radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.08), transparent 38%),
-    radial-gradient(circle at 100% 10%, rgba(255, 210, 28, 0.08), transparent 32%),
-    #11110f;
+    radial-gradient(circle at 92% -12%, rgba(255, 210, 28, 0.18), transparent 34%),
+    linear-gradient(180deg, var(--paper), var(--paper));
+  color: var(--ink);
 }
 
 .home-hero-simple::before {
@@ -3785,8 +3785,9 @@ h3 {
   min-height: auto;
   padding: 54px 0 78px;
   background:
-    radial-gradient(circle at 50% -22%, rgba(255, 255, 255, 0.07), transparent 34%),
-    #11110f;
+    radial-gradient(circle at 92% -12%, rgba(255, 210, 28, 0.18), transparent 34%),
+    linear-gradient(180deg, var(--paper), var(--paper));
+  color: var(--ink);
 }
 
 .home-hero-simple::before,
@@ -3813,13 +3814,18 @@ h3 {
 .home-hero-content .hero-subtitle {
   max-width: 720px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.72);
+  color: #4f4f49;
   font-size: 1rem;
   line-height: 1.66;
 }
 
 .text-accent {
-  color: var(--yellow);
+  border-radius: 5px;
+  padding: 0 0.04em;
+  background: linear-gradient(180deg, transparent 56%, rgba(255, 210, 28, 0.55) 56%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  color: var(--ink);
   font-weight: 780;
 }
 
