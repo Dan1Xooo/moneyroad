@@ -4041,29 +4041,34 @@ h3 {
 }
 
 /* Balanced project cards across mobile and desktop */
-.project-story-highlights {
-  display: flex;
-  flex-wrap: wrap;
+.project-story-link {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
   gap: 8px;
-  margin-top: 16px;
-}
-
-.project-story-highlights span {
-  border: 1px solid rgba(17, 17, 15, 0.12);
-  border-radius: 999px;
-  padding: 7px 10px;
-  background: rgba(255, 210, 28, 0.16);
+  margin-top: 6px;
+  border-bottom: 1px solid rgba(17, 17, 15, 0.24);
+  padding-bottom: 4px;
   color: var(--ink);
-  font-size: 0.72rem;
-  font-weight: 780;
-  line-height: 1.15;
-  white-space: nowrap;
+  font-size: 0.95rem;
+  font-weight: 820;
+  line-height: 1.2;
 }
 
-.project-story-card-2 .project-story-highlights span {
-  border-color: rgba(255, 210, 28, 0.28);
-  background: rgba(255, 210, 28, 0.1);
-  color: #ffe477;
+.project-story-link:hover {
+  border-color: var(--yellow);
+  color: #6a5200;
+}
+
+.project-story-link svg {
+  width: 17px;
+  flex: 0 0 auto;
+  color: var(--yellow);
+}
+
+.project-story-card-2 .project-story-link {
+  border-color: rgba(255, 210, 28, 0.34);
+  color: var(--white);
 }
 
 @media (min-width: 820px) {
@@ -4161,18 +4166,6 @@ h3 {
 
   .calculator-bridge-section {
     padding-bottom: 58px;
-  }
-}
-
-@media (max-width: 520px) {
-  .project-story-highlights {
-    gap: 7px;
-    margin-top: 14px;
-  }
-
-  .project-story-highlights span {
-    font-size: 0.68rem;
-    padding: 6px 8px;
   }
 }
 
