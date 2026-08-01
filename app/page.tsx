@@ -31,12 +31,6 @@ const projectBlocks = [
   },
 ];
 
-const payoutCards = [
-  ["Т-Банк", "1000 ₽", "за 1 отзыв"],
-  ["Альфа-Банк", "1450 ₽", "за 3 отзыва"],
-  ["Другие банки", "500–1000 ₽", "за отзыв"],
-];
-
 const finalLinks = [
   {
     label: "Можете ознакомиться с отзывами",
@@ -66,63 +60,23 @@ export default function Home() {
       <section className="hero home-hero-simple dark-section">
         <div className="container home-hero-content">
           <div className="home-hero-copy">
-            <div className="hero-kicker">Проект Данила</div>
             <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
             <p className="hero-subtitle">
-              Всем привет! Меня зовут Данил. Я являюсь основателем своего проекта
-              MoneyRoad. В своём проекте я показываю людям, как можно{" "}
+              Всем привет! Меня зовут Данил, я основатель MoneyRoad. В проекте я
+              показываю, как можно{" "}
               <span className="text-accent">экономить деньги на доставке продуктов</span>,
-              как можно{" "}
+              как{" "}
               <span className="text-accent">зарабатывать в интернете на отзывах</span>,
-              как получать{" "}
+              получать{" "}
               <span className="text-accent">
                 пассивный заработок за счёт денежных средств самого банка
               </span>{" "}
-              и как можно заработать на банковских картах, бизнес-картах, брокерских
-              счетах и т.п.
+              и{" "}
+              <span className="text-accent">
+                зарабатывать на банковских картах, бизнес-картах, брокерских счетах и
+                т.п.
+              </span>
             </p>
-            <div className="hero-trust-note">
-              Проект строится на понятных условиях, самостоятельном оформлении и
-              спокойном разборе каждого направления до старта.
-            </div>
-          </div>
-
-          <aside className="premium-hero-panel" aria-label="Примеры выплат по отзывам">
-            <div className="premium-panel-top">
-              <span>Примеры выплат</span>
-              <strong>по направлению отзывов</strong>
-            </div>
-            <div className="payout-grid">
-              {payoutCards.map(([bank, amount, note]) => (
-                <div className="payout-card" key={bank}>
-                  <span>{bank}</span>
-                  <strong>{amount}</strong>
-                  <p>{note}</p>
-                </div>
-              ))}
-            </div>
-            <div className="premium-panel-note">
-              <Shield />
-              <span>Без передачи паролей, SMS-кодов и доступа к приложениям</span>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="section premium-sums-section">
-        <div className="container premium-sums-grid">
-          <div>
-            <p className="eyebrow">Цифры из проекта</p>
-            <h2>Примеры выплат по направлению отзывов</h2>
-          </div>
-          <div className="payout-grid payout-grid-light">
-            {payoutCards.map(([bank, amount, note]) => (
-              <div className="payout-card payout-card-light" key={bank}>
-                <span>{bank}</span>
-                <strong>{amount}</strong>
-                <p>{note}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
