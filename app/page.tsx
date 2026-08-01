@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, Shield } from "@/components/icons";
+import { ArrowRight, ArrowUpRight, Shield } from "@/components/icons";
 
 const projectBlocks = [
   {
@@ -32,17 +31,10 @@ const projectBlocks = [
   },
 ];
 
-const showcaseCards = [
-  ["Отзывы", "500–1450 ₽", "за подтверждённые задания"],
-  ["Банковские продукты", "реферальные выплаты", "после выполнения условий"],
-  ["Промокоды", "экономия", "на сервисах и доставке"],
-];
-
-const summaryPoints = [
-  "экономия на доставке продуктов",
-  "заработок в интернете на отзывах",
-  "пассивный заработок за счёт денежных средств банка",
-  "банковские карты, бизнес-карты, брокерские счета и другие продукты",
+const payoutCards = [
+  ["Т-Банк", "1000 ₽", "за 1 отзыв"],
+  ["Альфа-Банк", "1450 ₽", "за 3 отзыва"],
+  ["Другие банки", "500–1000 ₽", "за отзыв"],
 ];
 
 const finalLinks = [
@@ -74,68 +66,63 @@ export default function Home() {
       <section className="hero home-hero-simple dark-section">
         <div className="container home-hero-content">
           <div className="home-hero-copy">
-            <div className="hero-brand">
-              <span className="hero-logo">
-                <Image
-                  src="/mr-logo-header.webp"
-                  alt="Логотип MR"
-                  width={84}
-                  height={84}
-                  priority
-                  unoptimized
-                />
-              </span>
-              <span>MoneyRoad</span>
-            </div>
+            <div className="hero-kicker">Проект Данила</div>
             <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
             <p className="hero-subtitle">
               Всем привет! Меня зовут Данил. Я являюсь основателем своего проекта
-              MoneyRoad. В своём проекте я показываю людям, как можно экономить деньги
-              на доставке продуктов, как можно зарабатывать в интернете на отзывах,
-              как получать пассивный заработок за счёт денежных средств самого банка
+              MoneyRoad. В своём проекте я показываю людям, как можно{" "}
+              <span className="text-accent">экономить деньги на доставке продуктов</span>,
+              как можно{" "}
+              <span className="text-accent">зарабатывать в интернете на отзывах</span>,
+              как получать{" "}
+              <span className="text-accent">
+                пассивный заработок за счёт денежных средств самого банка
+              </span>{" "}
               и как можно заработать на банковских картах, бизнес-картах, брокерских
               счетах и т.п.
             </p>
-            <div className="hero-topic-grid" aria-label="Основные направления MoneyRoad">
-              {summaryPoints.map((point) => (
-                <div key={point}>
-                  <Check />
-                  <span>{point}</span>
-                </div>
-              ))}
+            <div className="hero-trust-note">
+              Проект строится на понятных условиях, самостоятельном оформлении и
+              спокойном разборе каждого направления до старта.
             </div>
           </div>
 
-          <div className="home-hero-showcase" aria-label="Направления проекта MoneyRoad">
-            <div className="showcase-shell">
-              <div className="showcase-topline">
-                <span>MR</span>
-                <strong>MoneyRoad</strong>
-              </div>
-              <div className="showcase-logo">
-                <Image
-                  src="/mr-logo-header.webp"
-                  alt=""
-                  width={150}
-                  height={110}
-                  priority
-                  unoptimized
-                />
-              </div>
-              <div className="showcase-card-stack">
-                {showcaseCards.map(([label, value, note]) => (
-                  <div className="showcase-card" key={label}>
-                    <span>{label}</span>
-                    <strong>{value}</strong>
-                    <p>{note}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="showcase-safety">
-                <Shield />
-                <span>без паролей и SMS-кодов</span>
-              </div>
+          <aside className="premium-hero-panel" aria-label="Примеры выплат по отзывам">
+            <div className="premium-panel-top">
+              <span>Примеры выплат</span>
+              <strong>по направлению отзывов</strong>
             </div>
+            <div className="payout-grid">
+              {payoutCards.map(([bank, amount, note]) => (
+                <div className="payout-card" key={bank}>
+                  <span>{bank}</span>
+                  <strong>{amount}</strong>
+                  <p>{note}</p>
+                </div>
+              ))}
+            </div>
+            <div className="premium-panel-note">
+              <Shield />
+              <span>Без передачи паролей, SMS-кодов и доступа к приложениям</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section premium-sums-section">
+        <div className="container premium-sums-grid">
+          <div>
+            <p className="eyebrow">Цифры из проекта</p>
+            <h2>Примеры выплат по направлению отзывов</h2>
+          </div>
+          <div className="payout-grid payout-grid-light">
+            {payoutCards.map(([bank, amount, note]) => (
+              <div className="payout-card payout-card-light" key={bank}>
+                <span>{bank}</span>
+                <strong>{amount}</strong>
+                <p>{note}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
