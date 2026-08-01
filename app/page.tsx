@@ -28,9 +28,14 @@ const projectBlocks = [
       "Условия могут быть у каждого продукта разными. К примеру, у дебетовых карт в частности это совершение покупки, используя карту, на сумму от 100 ₽. У бизнес-карт — это пополнение от 1000 ₽ и так далее. Для банка клиент должен быть новым.",
       "Почему я плачу за оформление банковских продуктов? Всё довольно просто. Банкам нужны новые клиенты, поэтому они платят партнёрам комиссионное вознаграждение за оформленные продукты и выполненные условия.",
       "Я привожу банкам клиентов, получаю комиссию и частью этой суммы делюсь с вами. В итоге: банк получает нового клиента, вы получаете вознаграждение, я получаю свою часть комиссии за привлечение и сопровождение.",
-      "Сразу скажу: вы всё оформляете самостоятельно. Я не прошу пароли и SMS-коды, а уж тем более не скупаю ваши карты.",
     ],
   },
+];
+
+const showcaseCards = [
+  ["Отзывы", "500–1450 ₽", "за подтверждённые задания"],
+  ["Банковские продукты", "реферальные выплаты", "после выполнения условий"],
+  ["Промокоды", "экономия", "на сервисах и доставке"],
 ];
 
 const summaryPoints = [
@@ -68,35 +73,69 @@ export default function Home() {
     <main>
       <section className="hero home-hero-simple dark-section">
         <div className="container home-hero-content">
-          <div className="hero-brand">
-            <span className="hero-logo">
-              <Image
-                src="/mr-logo-header.webp"
-                alt="Логотип MR"
-                width={84}
-                height={84}
-                priority
-                unoptimized
-              />
-            </span>
-            <span>MoneyRoad</span>
+          <div className="home-hero-copy">
+            <div className="hero-brand">
+              <span className="hero-logo">
+                <Image
+                  src="/mr-logo-header.webp"
+                  alt="Логотип MR"
+                  width={84}
+                  height={84}
+                  priority
+                  unoptimized
+                />
+              </span>
+              <span>MoneyRoad</span>
+            </div>
+            <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
+            <p className="hero-subtitle">
+              Всем привет! Меня зовут Данил. Я являюсь основателем своего проекта
+              MoneyRoad. В своём проекте я показываю людям, как можно экономить деньги
+              на доставке продуктов, как можно зарабатывать в интернете на отзывах,
+              как получать пассивный заработок за счёт денежных средств самого банка
+              и как можно заработать на банковских картах, бизнес-картах, брокерских
+              счетах и т.п.
+            </p>
+            <div className="hero-topic-grid" aria-label="Основные направления MoneyRoad">
+              {summaryPoints.map((point) => (
+                <div key={point}>
+                  <Check />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
-          <p className="hero-subtitle">
-            Всем привет! Меня зовут Данил. Я являюсь основателем своего проекта
-            MoneyRoad. В своём проекте я показываю людям, как можно экономить деньги
-            на доставке продуктов, как можно зарабатывать в интернете на отзывах, как
-            получать пассивный заработок за счёт денежных средств самого банка и как
-            можно заработать на банковских картах, бизнес-картах, брокерских счетах и
-            т.п.
-          </p>
-          <div className="hero-topic-grid" aria-label="Основные направления MoneyRoad">
-            {summaryPoints.map((point) => (
-              <div key={point}>
-                <Check />
-                <span>{point}</span>
+
+          <div className="home-hero-showcase" aria-label="Направления проекта MoneyRoad">
+            <div className="showcase-shell">
+              <div className="showcase-topline">
+                <span>MR</span>
+                <strong>MoneyRoad</strong>
               </div>
-            ))}
+              <div className="showcase-logo">
+                <Image
+                  src="/mr-logo-header.webp"
+                  alt=""
+                  width={150}
+                  height={110}
+                  priority
+                  unoptimized
+                />
+              </div>
+              <div className="showcase-card-stack">
+                {showcaseCards.map(([label, value, note]) => (
+                  <div className="showcase-card" key={label}>
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                    <p>{note}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="showcase-safety">
+                <Shield />
+                <span>без паролей и SMS-кодов</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -113,8 +152,11 @@ export default function Home() {
 
       <section className="section project-story-section">
         <div className="container project-story-list">
-          {projectBlocks.map((block) => (
-            <article className="project-story-card" key={block.title}>
+          {projectBlocks.map((block, index) => (
+            <article
+              className={`project-story-card project-story-card-${index + 1}`}
+              key={block.title}
+            >
               <div className="project-story-heading">
                 <p className="eyebrow">{block.eyebrow}</p>
                 <h2>{block.title}</h2>
