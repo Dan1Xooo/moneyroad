@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Shield } from "@/components/icons";
+import { ArrowRight, ArrowUpRight } from "@/components/icons";
 
 const projectBlocks = [
   {
@@ -33,22 +33,22 @@ const projectBlocks = [
 
 const finalLinks = [
   {
-    label: "Можете ознакомиться с отзывами",
-    href: "/reviews",
-    external: false,
+    label: "Канал с отзывами",
+    href: "https://t.me/MoneyRoadOtzivi",
+    external: true,
   },
   {
-    label: "За подробностями в Telegram-канал",
+    label: "Telegram-канал",
     href: "https://t.me/MRMoneyRoad",
     external: true,
   },
   {
-    label: "Или ко мне в личные сообщения",
+    label: "Написать мне",
     href: "https://t.me/DanIlMoneyRoad",
     external: true,
   },
   {
-    label: "Также можете рассчитать предварительную сумму заработка на банковских продуктах через калькулятор",
+    label: "Калькулятор заработка",
     href: "/calculator",
     external: false,
   },
@@ -60,7 +60,7 @@ export default function Home() {
       <section className="hero home-hero-simple dark-section">
         <div className="container home-hero-content">
           <div className="home-hero-copy">
-            <h1>MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете</h1>
+            <h1>MoneyRoad — банковские выгоды и заработок в интернете</h1>
             <p className="hero-subtitle">
               Всем привет! Меня зовут Данил, я основатель MoneyRoad. В проекте я
               показываю, как можно{" "}
@@ -88,6 +88,14 @@ export default function Home() {
             Кратко пробежимся по моим проектам, более подробно всё расписано у меня в
             Telegram-канале
           </h2>
+          <a
+            href="https://t.me/MRMoneyRoad"
+            target="_blank"
+            rel="noreferrer"
+            className="telegram-inline-link"
+          >
+            Перейти в Telegram-канал <ArrowUpRight />
+          </a>
         </div>
       </section>
 
@@ -114,9 +122,6 @@ export default function Home() {
 
       <section className="section home-safety-note">
         <div className="container home-safety-card">
-          <div className="safety-mark">
-            <Shield />
-          </div>
           <div>
             <p className="eyebrow">Важный принцип</p>
             <h2>Вы всё оформляете самостоятельно</h2>

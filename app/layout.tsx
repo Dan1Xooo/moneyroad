@@ -8,13 +8,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете",
+    default: "MoneyRoad — банковские выгоды и заработок в интернете",
     template: "%s — MoneyRoad",
   },
   description:
     "MoneyRoad — проект Данила про банковские выгоды, промокоды, экономию на доставке, заработок на отзывах и банковских продуктах без передачи паролей и SMS-кодов.",
   openGraph: {
-    title: "MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете",
+    title: "MoneyRoad — банковские выгоды и заработок в интернете",
     description:
       "Проект Данила про банковские выгоды, промокоды, экономию, отзывы и заработок на банковских продуктах.",
     url: SITE_URL,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "MoneyRoad — банковские выгоды, промокоды и способы заработка в интернете",
+    title: "MoneyRoad — банковские выгоды и заработок в интернете",
     description:
       "Проект Данила про банковские выгоды, промокоды, экономию и способы заработка в интернете.",
     images: ["/mr-logo.png"],
