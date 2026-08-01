@@ -3805,7 +3805,7 @@ h3 {
 
 .home-hero-content h1 {
   max-width: 760px;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   font-size: 2.18rem;
   line-height: 1.03;
   letter-spacing: 0;
@@ -3820,13 +3820,11 @@ h3 {
 }
 
 .text-accent {
-  border-radius: 5px;
-  padding: 0 0.04em;
-  background: linear-gradient(180deg, transparent 56%, rgba(255, 210, 28, 0.55) 56%);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  color: var(--ink);
-  font-weight: 780;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-weight: inherit;
 }
 
 .hero-kicker,
@@ -4036,8 +4034,109 @@ h3 {
     padding: 38px;
   }
 
-  .calculator-bridge-link {
+.calculator-bridge-link {
     width: auto;
     white-space: nowrap;
+  }
+}
+
+/* Compact homepage rhythm */
+.projects-intro-section {
+  padding: 42px 0 44px;
+}
+
+.projects-intro {
+  gap: 10px;
+}
+
+.projects-intro .eyebrow,
+.project-story-heading .eyebrow {
+  margin-bottom: 0;
+}
+
+.projects-intro h2 {
+  margin: 0;
+}
+
+.project-story-section {
+  padding: 48px 0 56px;
+}
+
+.project-story-list {
+  gap: 18px;
+}
+
+.project-story-card {
+  gap: 20px;
+}
+
+.project-story-copy {
+  gap: 12px;
+}
+
+.project-story-copy p {
+  line-height: 1.64;
+}
+
+.home-safety-note {
+  padding: 52px 0 48px;
+}
+
+.calculator-bridge-section {
+  padding-bottom: 48px;
+}
+
+.home-final-links-section {
+  padding: 42px 0 56px;
+}
+
+@media (min-width: 640px) {
+  .home-hero-simple {
+    padding: 54px 0 58px;
+  }
+
+  .projects-intro-section {
+    padding: 56px 0 60px;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-hero-simple {
+    padding: 34px 0 36px;
+  }
+
+  .home-hero-content h1 {
+    margin-bottom: 14px;
+  }
+
+  .projects-intro-section {
+    padding: 34px 0 36px;
+  }
+
+  .project-story-section {
+    padding: 36px 0 42px;
+  }
+
+  .project-story-card {
+    gap: 18px;
+    padding: 22px;
+  }
+
+  .project-story-copy p {
+    font-size: 0.96rem;
+    line-height: 1.62;
+  }
+
+  .home-safety-note {
+    padding: 42px 0 40px;
+  }
+
+  .home-safety-card,
+  .calculator-bridge {
+    padding: 22px;
+  }
+
+  .home-final-links-section {
+    padding: 36px 0 48px;
   }
 }
