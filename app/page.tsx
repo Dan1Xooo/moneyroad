@@ -123,13 +123,31 @@ export default function Home() {
       <section className="section home-safety-note">
         <div className="container home-safety-card">
           <div>
-            <p className="eyebrow">Важный принцип</p>
+            <p className="eyebrow">Безопасность</p>
             <h2>Вы всё оформляете самостоятельно</h2>
             <p>
-              Я могу объяснить механику, условия и порядок действий, но не прошу
-              пароли, SMS-коды, доступ к банковским приложениям и не скупаю карты.
+              Все действия вы делаете сами: оформляете продукт, подтверждаете данные и
+              выполняете условия.
+            </p>
+            <p className="safety-emphasis">
+              Я не прошу пароли, SMS-коды, доступ к банковским приложениям и не скупаю
+              карты.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="section calculator-bridge-section">
+        <div className="container calculator-bridge">
+          <div>
+            <p className="eyebrow">Предварительный расчёт</p>
+            <h2>Хочешь понять, сколько может выйти по банковским продуктам?</h2>
+            <p>Открой калькулятор и узнай свой предварительный заработок.</p>
+          </div>
+          <Link href="/calculator" className="calculator-bridge-link">
+            <span>Открыть калькулятор</span>
+            <ArrowRight />
+          </Link>
         </div>
       </section>
 
@@ -145,7 +163,7 @@ export default function Home() {
                 className="home-final-link"
               >
                 <span>{item.label}</span>
-                <ArrowUpRight />
+                <ArrowRight />
               </a>
             ) : (
               <Link key={item.label} href={item.href} className="home-final-link">
