@@ -373,19 +373,20 @@ h3 {
 .hero-brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 28px;
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.78rem;
   font-weight: 740;
   letter-spacing: 0.16em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
 .hero-logo {
   display: grid;
-  width: 82px;
-  height: 58px;
+  width: 58px;
+  height: 42px;
   place-items: center;
 }
 
