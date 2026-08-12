@@ -61,6 +61,7 @@ export default function OffersPage() {
                         <div>
                           <p className="catalog-age">Возраст: от {offer.ageMin} лет</p>
                           <h3>{offer.name}</h3>
+                          <p className="catalog-summary">{offer.description}</p>
                         </div>
                         <strong>
                           {offer.payoutPrefix && `${offer.payoutPrefix} `}
@@ -96,27 +97,22 @@ export default function OffersPage() {
                         <details className="catalog-details">
                           <summary className="button button-outline">Все условия</summary>
                           <div className="catalog-details-content">
-                            <p className="catalog-description">{offer.description}</p>
                             <dl className="offer-facts">
                               <div>
                                 <dt>Кому подходит</dt>
                                 <dd>{audienceLabel(offer.category)}</dd>
                               </div>
                             </dl>
-                            <div className="condition-block">
-                              <p>Что потребуется</p>
-                              {offer.category === "mfo" ? (
-                                <p className="catalog-description">
-                                  Условия по МФО строго в личных сообщениях.
-                                </p>
-                              ) : (
+                            {offer.category !== "mfo" && (
+                              <div className="condition-block">
+                                <p>Что потребуется</p>
                                 <ul>
                                   {offer.conditions.map((condition) => (
                                     <li key={condition}>{condition}</li>
                                   ))}
                                 </ul>
-                              )}
-                            </div>
+                              </div>
+                            )}
                             {offer.warning && (
                               <p className="offer-warning">{offer.warning}</p>
                             )}
