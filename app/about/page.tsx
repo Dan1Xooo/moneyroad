@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowUpRight } from "@/components/icons";
+import { ArrowUpRight, TelegramIcon } from "@/components/icons";
 import { CtaBand } from "@/components/CtaBand";
 import { PageIntro } from "@/components/PageIntro";
 
@@ -12,8 +12,18 @@ export const metadata: Metadata = {
 };
 
 const links = [
-  ["Telegram-канал", "Новости, предложения и разборы", "https://t.me/MRMoneyRoad"],
-  ["Личные сообщения", "Уточнить условия у Данила", "https://t.me/DanIlMoneyRoad"],
+  {
+    title: "Telegram-канал",
+    description: "Новости, предложения и разборы",
+    href: "https://t.me/MRMoneyRoad",
+    label: "Канал",
+  },
+  {
+    title: "Личные сообщения",
+    description: "Уточнить условия у Данила",
+    href: "https://t.me/DanIlMoneyRoad",
+    label: "Чат",
+  },
 ];
 
 export default function AboutPage() {
@@ -75,11 +85,17 @@ export default function AboutPage() {
             <h2>Выберите удобный канал связи</h2>
           </div>
           <div className="contact-grid">
-            {links.map(([title, description, href]) => (
+            {links.map(({ title, description, href, label }) => (
               <a key={title} href={href} target="_blank" rel="noreferrer">
-                <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                <div className="contact-card-main">
+                  <span className="contact-mark">
+                    <TelegramIcon />
+                  </span>
+                  <div>
+                    <span className="contact-label">{label}</span>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </div>
                 </div>
                 <ArrowUpRight />
               </a>
