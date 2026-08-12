@@ -21,8 +21,7 @@ const categories: OfferCategory[] = ["debit", "business", "mfo"];
 
 const audienceLabel = (category: OfferCategory) => {
   if (category === "debit") return "Новым клиентам банка";
-  if (category === "business") return "Тем, кто готов пройти полный пакет";
-  return "Совершеннолетним пользователям после изучения договора";
+  return "Совершеннолетним";
 };
 
 export default function OffersPage() {
@@ -33,7 +32,7 @@ export default function OffersPage() {
           <PageIntro
             eyebrow="Каталог MoneyRoad"
             title="Актуальные направления"
-            description="Условия и доступность подтверждаются перед оформлением. Добавьте интересующий вариант в расчёт — калькулятор проверит возраст и статус нового клиента."
+            description="Условия и доступность подтверждаются перед оформлением в личных сообщениях. Добавь интересующий продукт в расчёт."
           />
         </div>
       </section>
@@ -52,7 +51,7 @@ export default function OffersPage() {
             >
               <div className="container">
                 <div className="offer-category-heading">
-                  <span>0{categoryIndex + 1}</span>
+                  <span>{categoryIndex + 1}</span>
                   <h2>{categoryLabels[category]}</h2>
                 </div>
                 <div className="catalog-grid">
@@ -78,17 +77,13 @@ export default function OffersPage() {
                           <dd>{offer.duration}</dd>
                         </div>
                       </dl>
+                      {offer.catalogNote && (
+                        <p className="catalog-critical-note">{offer.catalogNote}</p>
+                      )}
                       {offer.category === "business" && (
                         <p className="catalog-critical-note">
-                          Полный пакет из пяти карт. Выплата 15 000 ₽ — после выполнения
-                          условий по всему пакету. Отдельные карты выбрать нельзя.
-                        </p>
-                      )}
-                      {offer.category === "mfo" && (
-                        <p className="offer-warning loan-visible-warning">
-                          Это займы с обязательством вернуть полученные средства. Перед
-                          оформлением необходимо самостоятельно изучить договор и полную
-                          стоимость займа.
+                          Выплата 15 000 ₽ после выполнения условий по каждой
+                          бизнес-карте.
                         </p>
                       )}
                       <div className="catalog-actions">
@@ -110,11 +105,17 @@ export default function OffersPage() {
                             </dl>
                             <div className="condition-block">
                               <p>Что потребуется</p>
-                              <ul>
-                                {offer.conditions.map((condition) => (
-                                  <li key={condition}>{condition}</li>
-                                ))}
-                              </ul>
+                              {offer.category === "mfo" ? (
+                                <p className="catalog-description">
+                                  Условия по МФО строго в личных сообщениях.
+                                </p>
+                              ) : (
+                                <ul>
+                                  {offer.conditions.map((condition) => (
+                                    <li key={condition}>{condition}</li>
+                                  ))}
+                                </ul>
+                              )}
                             </div>
                             {offer.warning && (
                               <p className="offer-warning">{offer.warning}</p>

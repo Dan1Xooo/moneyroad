@@ -973,9 +973,11 @@ h3 {
 }
 
 .offer-category-heading span {
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 780;
+  color: var(--yellow-dark);
+  font-size: clamp(2.8rem, 11vw, 5rem);
+  font-weight: 850;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
 }
 
 .offer-category-heading h2 {
