@@ -34,9 +34,9 @@ export default function AboutPage() {
             eyebrow="О проекте"
             title="MoneyRoad — дополнительный заработок на финансовых продуктах"
           />
-          <div className="about-logo-composition">
-            <span className="about-logo-mark">MR</span>
-            <span className="about-wordmark">MoneyRoad</span>
+          <div className="about-brand-lockup">
+            <span className="about-brand-mark">MR</span>
+            <span className="about-brand-word">MoneyRoad</span>
           </div>
         </div>
       </section>

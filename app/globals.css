@@ -1353,35 +1353,32 @@ h3 {
   color: rgba(17, 17, 15, 0.54);
 }
 
-.about-logo-composition {
-  display: grid;
-  justify-items: start;
-  gap: 12px;
-  align-content: center;
+.about-brand-lockup {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  align-items: baseline;
+  gap: clamp(12px, 3vw, 24px);
+  align-self: center;
   border: 0;
   background: transparent;
   box-shadow: none;
   padding-top: 10px;
+  color: var(--white);
 }
 
-.about-logo-mark {
-  color: var(--white);
-  font-size: clamp(7.6rem, 36vw, 16rem);
+.about-brand-mark {
+  font-size: clamp(4.8rem, 11vw, 6.3rem);
   font-weight: 900;
   letter-spacing: -0.09em;
-  line-height: 0.78;
-  -webkit-text-stroke: clamp(2px, 0.8vw, 5px) var(--ink);
-  paint-order: stroke fill;
+  line-height: 1;
 }
 
-.about-wordmark {
-  color: var(--white);
-  font-size: clamp(2.45rem, 10.5vw, 5.3rem);
-  font-weight: 880;
-  letter-spacing: -0.065em;
-  line-height: 0.95;
-  -webkit-text-stroke: clamp(1px, 0.32vw, 2px) var(--ink);
-  paint-order: stroke fill;
+.about-brand-word {
+  font-size: clamp(1.75rem, 4.4vw, 2.8rem);
+  font-weight: 760;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 
 .about-story-grid {
@@ -2459,12 +2456,13 @@ h3 {
   }
 
   .about-hero-grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: clamp(70px, 8vw, 120px);
   }
 
-  .about-logo-composition {
-    justify-items: center;
-    min-height: 360px;
+  .about-brand-lockup {
+    justify-self: end;
+    min-height: 0;
     padding-top: 0;
   }
 
