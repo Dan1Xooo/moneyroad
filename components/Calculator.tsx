@@ -81,9 +81,9 @@ function CalculatorOfferCard({
           <span className="offer-category">
             {offer.category === "debit"
               ? "Дебетовая карта"
-              : offer.category === "savings"
-                ? "Накопительный счёт"
-                : "Бизнес-пакет"}
+              : offer.category === "business"
+                ? "Бизнес-пакет"
+                : "Заёмные предложения"}
           </span>
           <h3>{offer.name}</h3>
         </div>

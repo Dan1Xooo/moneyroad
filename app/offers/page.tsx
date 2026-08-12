@@ -13,15 +13,14 @@ import {
 export const metadata: Metadata = {
   title: "Актуальные предложения",
   description:
-    "Дебетовые карты, накопительные счета, бизнес-карты и заёмные предложения MoneyRoad.",
+    "Дебетовые карты, бизнес-карты и заёмные предложения MoneyRoad.",
   alternates: { canonical: "/offers" },
 };
 
-const categories: OfferCategory[] = ["debit", "savings", "business", "mfo"];
+const categories: OfferCategory[] = ["debit", "business", "mfo"];
 
 const audienceLabel = (category: OfferCategory) => {
   if (category === "debit") return "Новым клиентам банка";
-  if (category === "savings") return "Тем, кому доступен продукт после проверки";
   if (category === "business") return "Тем, кто готов пройти полный пакет";
   return "Совершеннолетним пользователям после изучения договора";
 };

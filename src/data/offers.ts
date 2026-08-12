@@ -1,4 +1,4 @@
-export type OfferCategory = "debit" | "savings" | "business" | "mfo";
+export type OfferCategory = "debit" | "business" | "mfo";
 
 export type Offer = {
   id: string;
@@ -86,27 +86,6 @@ export const offers: Offer[] = [
     telegramLabel: "Дебетовая карта Ozon Банка — 300 ₽",
   },
   {
-    id: "alfa-savings",
-    category: "savings",
-    name: "Накопительный счёт Альфа-Банка",
-    shortName: "Накопительный счёт",
-    payout: 750,
-    payoutPrefix: "",
-    ageMin: 18,
-    newClientOnly: false,
-    active: true,
-    description: "Предложение по накопительному счёту с индивидуальной проверкой доступности.",
-    conditions: [
-      "Точные условия сообщаются перед оформлением",
-      "Доступность проверяется индивидуально",
-      "Выплата — после выполнения условий и подтверждения результата",
-    ],
-    duration: "Уточняется перед оформлением",
-    warning: "Наличие дебетовой карты не исключает это предложение автоматически.",
-    hiddenName: false,
-    telegramLabel: "Накопительный счёт Альфа-Банка — 750 ₽",
-  },
-  {
     id: "business-pack",
     category: "business",
     name: "Пакет из пяти бизнес-карт",
@@ -167,7 +146,6 @@ export const loanPayoutConfig = {
 
 export const categoryLabels: Record<OfferCategory, string> = {
   debit: "Дебетовые карты",
-  savings: "Накопительные счета",
   business: "Бизнес-карты",
   mfo: "Заёмные предложения",
 };

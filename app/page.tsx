@@ -10,15 +10,12 @@ import {
 const debitTotal = activeOffers
   .filter((offer) => offer.category === "debit")
   .reduce((sum, offer) => sum + offer.payout, 0);
-const savingsPayout =
-  activeOffers.find((offer) => offer.category === "savings")?.payout ?? 0;
 const businessPayout =
   activeOffers.find((offer) => offer.category === "business")?.payout ?? 0;
 const loanPayout = activeOffers.find((offer) => offer.category === "mfo")?.payout ?? 0;
-const exampleTotal = debitTotal + savingsPayout + businessPayout + loanPayout * 2;
+const exampleTotal = debitTotal + businessPayout + loanPayout * 2;
 const exampleRows = [
   ["Дебетовые карты", `до ${formatMoney(debitTotal)}`],
-  ["Накопительный счёт", formatMoney(savingsPayout)],
   ["Пакет бизнес-карт", formatMoney(businessPayout)],
   ["Два заёмных предложения", formatMoney(loanPayout * 2)],
 ];
@@ -32,18 +29,12 @@ const categoryCards = [
   },
   {
     number: "02",
-    label: "Накопительный счёт",
-    amount: formatMoney(savingsPayout),
-    note: "Доступность проверяется индивидуально",
-  },
-  {
-    number: "03",
     label: "Пакет бизнес-карт",
     amount: formatMoney(businessPayout),
     note: "Только полным пакетом после выполнения условий",
   },
   {
-    number: "04",
+    number: "03",
     label: "Заёмные предложения",
     amount: `от ${formatMoney(loanPayout)}`,
     note: "Только 18+ после изучения обязательных условий",
