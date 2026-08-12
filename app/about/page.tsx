@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ArrowUpRight, TelegramIcon } from "@/components/icons";
 import { CtaBand } from "@/components/CtaBand";
 import { PageIntro } from "@/components/PageIntro";
@@ -36,17 +35,8 @@ export default function AboutPage() {
             title="MoneyRoad — дополнительный заработок на финансовых продуктах"
           />
           <div className="about-logo-composition">
-            <div className="about-logo-card">
-              <Image
-                src="/mr-logo.png"
-                alt="Логотип MoneyRoad"
-                width={420}
-                height={420}
-                priority
-                unoptimized
-              />
-            </div>
-            <span className="about-wordmark">MONEYROAD</span>
+            <span className="about-logo-mark">MR</span>
+            <span className="about-wordmark">MoneyRoad</span>
           </div>
         </div>
       </section>
