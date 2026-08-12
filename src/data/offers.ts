@@ -29,7 +29,7 @@ export const offers: Offer[] = [
     ageMin: 14,
     newClientOnly: true,
     active: true,
-    description: "Физическая дебетовая карта для нового клиента банка.",
+    description: "1000 ₽ гарантированно + 1450 ₽ через отзывы.",
     conditions: [
       "Только для нового клиента Альфа-Банка",
       "Получить физическую карту",
@@ -51,7 +51,7 @@ export const offers: Offer[] = [
     ageMin: 14,
     newClientOnly: true,
     active: true,
-    description: "Физическая дебетовая карта для нового клиента банка.",
+    description: "1000 ₽ гарантированно + 1000 ₽ через отзывы.",
     conditions: [
       "Только для нового клиента Т-Банка",
       "Получить физическую карту",

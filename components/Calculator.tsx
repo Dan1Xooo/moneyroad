@@ -379,7 +379,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
       {step === 1 && (
         <section className="calculator-step">
           <p className="step-label">Шаг 1</p>
-          <h2>Сколько вам лет?</h2>
+          <h2>Сколько тебе лет?</h2>
           <p>Возраст определяет доступные категории продуктов.</p>
           <div className="select-grid">
             <SelectCard
@@ -417,7 +417,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
       {step === 2 && (
         <section className="calculator-step">
           <p className="step-label">Шаг 2</p>
-          <h2>В каких банках у вас уже была дебетовая карта?</h2>
+          <h2>В каких банках у тебя уже была дебетовая карта?</h2>
           <p>
             Можно выбрать несколько. Карта этого банка будет исключена, поскольку
             предложение действует только для новых клиентов.
@@ -461,7 +461,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
           <p className="step-label">Шаг 3</p>
           <h2>Доступные предложения</h2>
           <p>
-            Выберите любые подходящие варианты. Выбор можно изменить до отправки
+            Выбери любые подходящие варианты. Выбор можно изменить до отправки
             результата.
           </p>
           {eligibleOffers.length ? (
@@ -649,7 +649,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
       {step === 5 && age !== "under14" && (
         <section className="calculator-step result-step wide">
           <div className="result-card">
-            <p className="step-label">Ваш предварительный расчёт</p>
+            <p className="step-label">Твой предварительный расчёт</p>
             <h2>
               Предварительно доступно{isFromTotal ? " от" : ""}:{" "}
               <span>{formatMoney(total)}</span>
@@ -694,8 +694,8 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
               )}
             </div>
             <p className="result-disclaimer">
-              Итоговая доступность зависит от соответствия требованиям, выполнения всех
-              условий и подтверждения результата банком или партнёром.
+              Итоговая доступность зависит от соответствия требованиям и выполнения
+              целевого действия.
             </p>
           </div>
 

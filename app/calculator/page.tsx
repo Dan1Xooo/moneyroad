@@ -5,7 +5,7 @@ import { CalculatorEntry } from "@/components/CalculatorEntry";
 export const metadata: Metadata = {
   title: "Калькулятор выплат",
   description:
-    "Рассчитайте предварительную сумму по доступным предложениям MoneyRoad.",
+    "Рассчитай предварительную сумму по доступным предложениям MoneyRoad.",
   alternates: { canonical: "/calculator" },
 };
 
@@ -15,10 +15,10 @@ export default function CalculatorPage() {
       <div className="container calculator-page-inner">
         <div className="calculator-heading">
           <p className="eyebrow yellow">Калькулятор MoneyRoad</p>
-          <h1>Рассчитайте предварительную сумму</h1>
+          <h1>Рассчитай предварительную сумму</h1>
           <p>
-            Ответьте на несколько вопросов и выберите предложения, которые готовы
-            рассмотреть.
+            Ответь на несколько вопросов и выбери предложение, за которое ты готов
+            получить вознаграждение.
           </p>
         </div>
         <Suspense fallback={<div className="calculator-shell">Загрузка калькулятора…</div>}>
