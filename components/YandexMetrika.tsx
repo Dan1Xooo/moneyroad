@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 declare global {
   interface Window {
@@ -10,14 +10,19 @@ declare global {
   }
 }
 
-const metrikaId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
+const metrikaId = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID || "111528085";
 const counterId = metrikaId && /^\d+$/.test(metrikaId) ? Number(metrikaId) : null;
 
 export function YandexMetrika() {
   const pathname = usePathname();
+  const isFirstHit = useRef(true);
 
   useEffect(() => {
     if (!counterId || !window.ym) return;
+    if (isFirstHit.current) {
+      isFirstHit.current = false;
+      return;
+    }
     window.ym(counterId, "hit", window.location.href);
   }, [pathname]);
 
@@ -37,13 +42,17 @@ export function YandexMetrika() {
                 if (document.scripts[j].src === r) { return; }
               }
               k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-            })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=${counterId}", "ym");
 
             ym(${counterId}, "init", {
+              ssr: true,
+              webvisor: true,
               clickmap: true,
+              ecommerce: "dataLayer",
+              referrer: document.referrer,
+              url: location.href,
               trackLinks: true,
-              accurateTrackBounce: true,
-              webvisor: true
+              accurateTrackBounce: true
             });
           `,
         }}
