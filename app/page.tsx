@@ -25,18 +25,21 @@ const categoryCards = [
     label: "Дебетовые карты",
     amount: `до ${formatMoney(debitTotal)}`,
     note: "Если раньше не было карт перечисленных банков",
+    highlights: ["Альфа до 2 450 ₽", "Т-Банк до 2 000 ₽", "Ozon 300 ₽"],
   },
   {
     number: "02",
     label: "Пакет бизнес-карт",
     amount: formatMoney(businessPayout),
     note: "18+. За пять сделанных бизнес-карт",
+    highlights: ["5 карт", "18+", "15 000 ₽"],
   },
   {
     number: "03",
     label: "МФО",
     amount: `от ${formatMoney(loanPayout)}`,
     note: "18+ после выполнения обязательных условий",
+    highlights: ["1-3 МФО", "18+", "до 3 000 ₽"],
   },
 ];
 
@@ -148,7 +151,19 @@ export default function Home() {
           <div className="category-grid">
             {categoryCards.map((item) => (
               <article className="category-card" key={item.label}>
-                <span className="card-number">{item.number}</span>
+                <div className="category-card-head">
+                  <span className="card-number">{item.number}</span>
+                  <div className="category-card-lines" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                </div>
+                <div className="category-highlights" aria-label={`Кратко: ${item.label}`}>
+                  {item.highlights.map((highlight) => (
+                    <span key={highlight}>{highlight}</span>
+                  ))}
+                </div>
                 <div>
                   <h3>{item.label}</h3>
                   <strong>{item.amount}</strong>
