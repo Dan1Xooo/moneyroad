@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 
 const links = [
   ["Telegram-канал", "Новости, предложения и разборы", "https://t.me/MRMoneyRoad"],
-  ["Отзывы", "Опубликованные результаты участников", "https://t.me/MoneyRoadOtzivi"],
   ["Личные сообщения", "Уточнить условия у Данила", "https://t.me/DanIlMoneyRoad"],
 ];
 
