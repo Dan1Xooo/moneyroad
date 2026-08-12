@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileCalculatorBar } from "@/components/MobileCalculatorBar";
+import { YandexMetrika } from "@/components/YandexMetrika";
 import { SITE_URL } from "@/src/config/site";
 import "./globals.css";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <MobileCalculatorBar />
+        <YandexMetrika />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
