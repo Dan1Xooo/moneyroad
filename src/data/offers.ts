@@ -6,6 +6,7 @@ export type Offer = {
   name: string;
   shortName: string;
   payout: number;
+  payoutLabel?: string;
   payoutPrefix: "" | "от";
   ageMin: number;
   newClientOnly: boolean;
@@ -25,11 +26,12 @@ export const offers: Offer[] = [
     name: "Дебетовая карта Альфа-Банка",
     shortName: "Альфа-Банк",
     payout: 1000,
+    payoutLabel: "1000 ₽ гарантировано + 1450 ₽ через написание отзывов",
     payoutPrefix: "",
     ageMin: 14,
     newClientOnly: true,
     active: true,
-    description: "1000 ₽ гарантированно + 1450 ₽ через отзывы.",
+    description: "Физическая дебетовая карта для нового клиента банка.",
     conditions: [
       "Только для нового клиента Альфа-Банка",
       "Получить физическую карту",
@@ -47,11 +49,12 @@ export const offers: Offer[] = [
     name: "Дебетовая карта Т-Банка",
     shortName: "Т-Банк",
     payout: 1000,
+    payoutLabel: "1000 ₽ гарантировано + 1000 ₽ через написание отзывов",
     payoutPrefix: "",
     ageMin: 14,
     newClientOnly: true,
     active: true,
-    description: "1000 ₽ гарантированно + 1000 ₽ через отзывы.",
+    description: "Физическая дебетовая карта для нового клиента банка.",
     conditions: [
       "Только для нового клиента Т-Банка",
       "Получить физическую карту",

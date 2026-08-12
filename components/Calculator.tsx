@@ -87,9 +87,9 @@ function CalculatorOfferCard({
           </span>
           <h3>{offer.name}</h3>
         </div>
-        <strong className="offer-payout">
-          {offer.payoutPrefix && `${offer.payoutPrefix} `}
-          {formatMoney(offer.payout)}
+        <strong className={offer.payoutLabel ? "offer-payout offer-payout-label" : "offer-payout"}>
+          {offer.payoutLabel ||
+            `${offer.payoutPrefix && `${offer.payoutPrefix} `}${formatMoney(offer.payout)}`}
         </strong>
       </div>
       <p>{offer.description}</p>
