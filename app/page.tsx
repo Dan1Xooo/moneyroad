@@ -25,21 +25,21 @@ const categoryCards = [
     label: "Дебетовые карты",
     amount: `до ${formatMoney(debitTotal)}`,
     note: "Если раньше не было карт перечисленных банков",
-    highlights: ["Альфа до 2 450 ₽", "Т-Банк до 2 000 ₽", "Ozon 300 ₽"],
+    visual: "debit",
   },
   {
     number: "02",
     label: "Пакет бизнес-карт",
     amount: formatMoney(businessPayout),
     note: "18+. За пять сделанных бизнес-карт",
-    highlights: ["5 карт", "18+", "15 000 ₽"],
+    visual: "business",
   },
   {
     number: "03",
     label: "МФО",
     amount: `от ${formatMoney(loanPayout)}`,
     note: "18+ после выполнения обязательных условий",
-    highlights: ["1-3 МФО", "18+", "до 3 000 ₽"],
+    visual: "mfo",
   },
 ];
 
@@ -153,16 +153,14 @@ export default function Home() {
               <article className="category-card" key={item.label}>
                 <div className="category-card-head">
                   <span className="card-number">{item.number}</span>
-                  <div className="category-card-lines" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
                 </div>
-                <div className="category-highlights" aria-label={`Кратко: ${item.label}`}>
-                  {item.highlights.map((highlight) => (
-                    <span key={highlight}>{highlight}</span>
-                  ))}
+                <div
+                  className={`category-visual category-visual-${item.visual}`}
+                  aria-hidden="true"
+                >
+                  <span />
+                  <span />
+                  <span />
                 </div>
                 <div>
                   <h3>{item.label}</h3>
