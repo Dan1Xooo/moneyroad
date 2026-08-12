@@ -12,7 +12,6 @@ import {
 
 type AgeGroup = "under14" | "14to17" | "18plus";
 type BankId = "alfa-debit" | "tbank-debit" | "ozon-debit";
-type BusinessReadiness = "yes" | "no" | null;
 
 const bankOptions: { id: BankId; label: string }[] = [
   { id: "alfa-debit", label: "Альфа-Банк" },
@@ -24,7 +23,7 @@ const steps = [
   "Возраст",
   "Банки",
   "Предложения",
-  "Заёмные продукты",
+  "МФО",
   "Результат",
 ];
 
@@ -62,18 +61,11 @@ function CalculatorOfferCard({
   offer,
   selected,
   onToggle,
-  businessReadiness,
-  onBusinessReadinessChange,
 }: {
   offer: Offer;
   selected: boolean;
   onToggle: () => void;
-  businessReadiness: BusinessReadiness;
-  onBusinessReadinessChange: (value: Exclude<BusinessReadiness, null>) => void;
 }) {
-  const businessRequiresConfirmation =
-    offer.category === "business" && businessReadiness !== "yes";
-
   return (
     <article className={selected ? "calculator-offer selected" : "calculator-offer"}>
       <div className="calculator-offer-top">
@@ -83,7 +75,7 @@ function CalculatorOfferCard({
               ? "Дебетовая карта"
               : offer.category === "business"
                 ? "Бизнес-пакет"
-                : "Заёмные предложения"}
+                : "МФО"}
           </span>
           <h3>{offer.name}</h3>
         </div>
@@ -98,38 +90,10 @@ function CalculatorOfferCard({
           <li key={condition}>{condition}</li>
         ))}
       </ul>
-      {offer.category === "business" && (
-        <div className="business-confirmation">
-          <strong>
-            Готовы пройти полный пакет из пяти бизнес-карт и выполнить условия по каждой?
-          </strong>
-          <div className="business-choice" role="group" aria-label="Готовность пройти пакет">
-            <button
-              type="button"
-              className={businessReadiness === "yes" ? "active" : ""}
-              onClick={() => onBusinessReadinessChange("yes")}
-            >
-              Да, готов
-            </button>
-            <button
-              type="button"
-              className={businessReadiness === "no" ? "active" : ""}
-              onClick={() => onBusinessReadinessChange("no")}
-            >
-              Нет
-            </button>
-          </div>
-          <p>
-            Пакет оформляется полностью. Выплата 15 000 ₽ производится после выполнения
-            условий по всем пяти картам.
-          </p>
-        </div>
-      )}
       <button
         type="button"
         className={selected ? "button button-selected" : "button button-outline"}
         onClick={onToggle}
-        disabled={businessRequiresConfirmation}
       >
         {selected ? (
           <>
@@ -157,9 +121,6 @@ export function Calculator({ initialOffer = null }: { initialOffer?: string | nu
       ? initialOffer
       : null,
   );
-  const [businessReadiness, setBusinessReadiness] =
-    useState<BusinessReadiness>(null);
-  const [loanAccepted, setLoanAccepted] = useState(false);
   const [loanCount, setLoanCount] = useState(0);
   const [extraLoans, setExtraLoans] = useState(0);
   const [extraLoansOverLimit, setExtraLoansOverLimit] = useState(false);
@@ -171,13 +132,14 @@ export function Calculator({ initialOffer = null }: { initialOffer?: string | nu
     const numericAge = age === "18plus" ? 18 : 14;
     return activeOffers.filter(
       (offer) =>
-        offer.category !== "mfo" &&
         offer.ageMin <= numericAge &&
         !(offer.category === "debit" && banks.includes(offer.id as BankId)),
     );
   }, [age, banks]);
 
-  const selectedOffers = eligibleOffers.filter((offer) => selected.includes(offer.id));
+  const selectedOffers = eligibleOffers.filter(
+    (offer) => offer.category !== "mfo" && selected.includes(offer.id),
+  );
   const loanOffer = activeOffers.find((offer) => offer.category === "mfo");
   const firstLoanPayout = loanOffer?.payout ?? 0;
   const regularTotal = selectedOffers.reduce((sum, offer) => sum + offer.payout, 0);
@@ -193,14 +155,14 @@ export function Calculator({ initialOffer = null }: { initialOffer?: string | nu
     ),
     ...(loanCount > 0
       ? [
-          `Первые заёмные предложения: ${loanCount} — ${formatMoney(
+          `МФО: ${loanCount} — ${formatMoney(
             loanCount * firstLoanPayout,
           )}`,
         ]
       : []),
     ...(extraLoans > 0
       ? [
-          `Последующие заёмные предложения: ${extraLoans} — от ${formatMoney(
+          `Дополнительные МФО: ${extraLoans} — от ${formatMoney(
             extraLoans * loanPayoutConfig.additionalMinimumPayout,
           )}`,
         ]
@@ -319,13 +281,6 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
     setStep(isLoanEntry && age === "18plus" ? 4 : 3);
   };
 
-  const setBusinessAnswer = (value: Exclude<BusinessReadiness, null>) => {
-    setBusinessReadiness(value);
-    if (value === "no") {
-      setSelected((current) => current.filter((id) => id !== "business-pack"));
-    }
-  };
-
   const updateExtraLoans = (rawValue: string) => {
     const parsedValue = Math.max(0, Math.floor(Number(rawValue) || 0));
     const overLimit = parsedValue > loanPayoutConfig.additionalPublicMax;
@@ -341,8 +296,6 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
     setBanks([]);
     setNoneBanks(false);
     setSelected([]);
-    setBusinessReadiness(null);
-    setLoanAccepted(false);
     setLoanCount(0);
     setExtraLoans(0);
     setExtraLoansOverLimit(false);
@@ -371,7 +324,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
       )}
       {isLoanEntry && step < 4 && age && age !== "18plus" && (
         <div className="pending-note">
-          Заёмные предложения доступны только с 18 лет. Калькулятор покажет категории,
+          МФО доступны только с 18 лет. Калькулятор покажет категории,
           подходящие вашему возрасту.
         </div>
       )}
@@ -470,16 +423,20 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
                 <CalculatorOfferCard
                   key={offer.id}
                   offer={offer}
-                  selected={selected.includes(offer.id)}
-                  businessReadiness={businessReadiness}
-                  onBusinessReadinessChange={setBusinessAnswer}
-                  onToggle={() =>
+                  selected={offer.category === "mfo" ? loanCount > 0 : selected.includes(offer.id)}
+                  onToggle={() => {
+                    if (offer.category === "mfo") {
+                      setLoanCount((current) => (current > 0 ? 0 : 1));
+                      setExtraLoans(0);
+                      setExtraLoansOverLimit(false);
+                      return;
+                    }
                     setSelected((current) =>
                       current.includes(offer.id)
                         ? current.filter((id) => id !== offer.id)
                         : [...current, offer.id],
-                    )
-                  }
+                    );
+                  }}
                 />
               ))}
             </div>
@@ -494,7 +451,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
               <ChevronLeft /> Назад
             </button>
             <button type="button" className="button button-yellow" onClick={nextFromOffers}>
-              {age === "18plus" ? "Заёмные предложения" : "Показать результат"}{" "}
+              {age === "18plus" ? "МФО" : "Показать результат"}{" "}
               <ArrowRight />
             </button>
           </div>
@@ -510,40 +467,15 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
           }
         >
           <p className="step-label">Шаг 4</p>
-          <h2>Заёмные предложения</h2>
+          <h2>МФО</h2>
           {isLoanEntry && (
             <p className="loan-entry-message">
-              Вы перешли из раздела заёмных предложений. Выберите количество
+              Вы перешли из раздела МФО. Выберите количество
               предложений для предварительного расчёта.
             </p>
           )}
-          <div className="loan-warning">
-            <strong>Важно перед выбором</strong>
-            <p>
-              Это заёмные продукты. Перед оформлением необходимо самостоятельно изучить
-              договор, полную стоимость займа, срок возврата и подключённые услуги.
-            </p>
-          </div>
-          <label className="consent-card">
-            <input
-              type="checkbox"
-              checked={loanAccepted}
-              onChange={(event) => {
-                setLoanAccepted(event.target.checked);
-                if (!event.target.checked) {
-                  setLoanCount(0);
-                  setExtraLoans(0);
-                  setExtraLoansOverLimit(false);
-                }
-              }}
-            />
-            <span>
-              Я понимаю, что речь идёт о заёмных продуктах и обязательстве вернуть
-              полученные средства.
-            </span>
-          </label>
 
-          <div className={loanAccepted ? "loan-controls" : "loan-controls disabled"}>
+          <div className="loan-controls">
             <div>
               <label>Количество первых предложений</label>
               <div className="segmented-control">
@@ -554,7 +486,6 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
                   <button
                     key={value}
                     type="button"
-                    disabled={!loanAccepted}
                     className={loanCount === value ? "active" : ""}
                     onClick={() => setLoanCount(value)}
                   >
@@ -576,7 +507,6 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
                 step="1"
                 inputMode="numeric"
                 value={extraLoans}
-                disabled={!loanAccepted}
                 onChange={(event) => updateExtraLoans(event.target.value)}
               />
               <small>
@@ -601,7 +531,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
           </div>
 
           <div className="loan-subtotal">
-            <span>Заёмные предложения в расчёте</span>
+            <span>МФО в расчёте</span>
             <strong>
               {extraLoans > 0 ? "от " : ""}
               {formatMoney(loanTotal)}
@@ -667,7 +597,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
               {loanCount > 0 && (
                 <div>
                   <span>
-                    <strong>Первые заёмные предложения — {loanCount}</strong>
+                    <strong>МФО — {loanCount}</strong>
                     <small>После подтверждения каждого результата</small>
                   </span>
                   <b>{formatMoney(loanCount * firstLoanPayout)}</b>
@@ -676,7 +606,7 @@ ${isFromTotal ? "от " : ""}${formatMoney(total)}
               {extraLoans > 0 && (
                 <div>
                   <span>
-                    <strong>Последующие заёмные предложения — {extraLoans}</strong>
+                    <strong>Дополнительные МФО — {extraLoans}</strong>
                     <small>Точная сумма зависит от организации</small>
                   </span>
                   <b>
