@@ -889,6 +889,11 @@ h3 {
   background: var(--yellow);
 }
 
+.check-icon-negative {
+  background: #e54545;
+  color: var(--white);
+}
+
 .check-icon svg {
   width: 18px;
 }

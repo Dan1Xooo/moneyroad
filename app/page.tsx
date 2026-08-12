@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Shield } from "@/components/icons";
+import { ArrowRight, Check, CloseIcon, Shield } from "@/components/icons";
 import { CtaBand } from "@/components/CtaBand";
 import {
   activeOffers,
@@ -42,18 +42,21 @@ const categoryCards = [
 ];
 
 const steps = [
-  ["01", "Пройдите калькулятор", "Укажите возраст и банки, клиентом которых уже были."],
-  ["02", "Выберите продукты", "Добавьте в расчёт только то, что готовы рассмотреть."],
-  ["03", "Получите условия", "Свяжитесь с Данилом и подтвердите актуальность предложений."],
-  ["04", "Выполните действия", "Оформите всё самостоятельно и получите выплату после подтверждения."],
+  ["01", "Пройди калькулятор", "Укажи возраст и банки, клиентом которых ты уже был."],
+  ["02", "Выбери продукты", "Добавь в расчёт только то, за что готов получить вознаграждение."],
+  ["03", "Получи условия", "Свяжись с Данилом и уточни актуальность предложений."],
+  [
+    "04",
+    "Выполни действия",
+    "Оформи продукт самостоятельно и получи выплату после подтверждения выполнения целевого действия.",
+  ],
 ];
 
 const safetyPoints = [
-  "Все продукты оформляются самостоятельно",
-  "Данил не просит SMS-коды и пароли",
-  "Нет доступа к банковским приложениям",
-  "Условия и размер выплаты сообщаются заранее",
-  "От предложения можно отказаться до оформления",
+  { text: "Все продукты оформляй самостоятельно", tone: "positive" },
+  { text: "Данил не просит SMS-коды и пароли", tone: "negative" },
+  { text: "Не прошу данные от ваших банковских приложений", tone: "negative" },
+  { text: "Условия и размер выплаты сообщаются заранее", tone: "positive" },
 ];
 
 function HeroVisual() {
@@ -228,11 +231,15 @@ export default function Home() {
           </div>
           <div className="check-list">
             {safetyPoints.map((point) => (
-              <div key={point}>
-                <span className="check-icon">
-                  <Check />
+              <div key={point.text}>
+                <span
+                  className={
+                    point.tone === "negative" ? "check-icon check-icon-negative" : "check-icon"
+                  }
+                >
+                  {point.tone === "negative" ? <CloseIcon /> : <Check />}
                 </span>
-                <p>{point}</p>
+                <p>{point.text}</p>
               </div>
             ))}
           </div>

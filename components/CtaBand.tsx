@@ -7,8 +7,8 @@ type CtaBandProps = {
 };
 
 export function CtaBand({
-  title = "Узнайте свою предварительную сумму",
-  text = "Несколько вопросов — и вы увидите только подходящие по возрасту и статусу предложения.",
+  title = "Узнай свою предварительную сумму",
+  text = "Несколько вопросов, и ты увидишь только подходящие по возрасту и статусу предложения.",
 }: CtaBandProps) {
   return (
     <section className="cta-band section">
@@ -25,4 +25,3 @@ export function CtaBand({
     </section>
   );
 }
-
