@@ -717,40 +717,45 @@ h3 {
 
 .big-question {
   position: relative;
-  display: flex;
-  min-height: 400px;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  min-height: 0;
+  gap: 22px;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  padding: 30px;
-  background: var(--yellow);
+  padding: 0;
+  background: transparent;
 }
 
 .big-question::after {
-  position: absolute;
-  right: -90px;
-  bottom: -120px;
-  width: 320px;
-  height: 320px;
-  border: 55px solid rgba(17, 17, 15, 0.08);
-  border-radius: 50%;
-  content: "";
+  content: none;
 }
 
 .big-question span {
-  font-size: clamp(7rem, 40vw, 17rem);
+  display: grid;
+  width: clamp(96px, 34vw, 180px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(17, 17, 15, 0.12);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.72), transparent 28%),
+    var(--yellow);
+  box-shadow: 0 22px 60px rgba(17, 17, 15, 0.1);
+  font-size: clamp(4.8rem, 25vw, 9rem);
   font-weight: 850;
-  letter-spacing: -0.1em;
-  line-height: 0.78;
+  letter-spacing: 0;
+  line-height: 1;
 }
 
 .big-question p {
   position: relative;
   z-index: 1;
-  max-width: 230px;
+  max-width: 320px;
   margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 8vw, 3rem);
   font-weight: 700;
+  line-height: 1.02;
 }
 
 .explanation-copy {
@@ -768,6 +773,7 @@ h3 {
 }
 
 .accent-note {
+  margin-top: 26px;
   border-left: 3px solid var(--yellow);
   padding-left: 18px;
 }
@@ -777,13 +783,7 @@ h3 {
 }
 
 .process-section::before {
-  position: absolute;
-  top: 0;
-  left: 12%;
-  width: 1px;
-  height: 100%;
-  background: var(--line-dark);
-  content: "";
+  content: none;
 }
 
 .steps-grid {
@@ -2474,7 +2474,10 @@ h3 {
     display: none;
   }
 
-  .category-grid,
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .steps-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2485,8 +2488,8 @@ h3 {
   }
 
   .big-question {
-    min-height: 570px;
-    padding: 42px;
+    min-height: 0;
+    padding: 0;
   }
 
   .step-card {

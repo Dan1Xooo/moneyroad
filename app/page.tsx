@@ -17,7 +17,7 @@ const exampleTotal = debitTotal + businessPayout + loanPayout * 2;
 const exampleRows = [
   ["Дебетовые карты", `до ${formatMoney(debitTotal)}`],
   ["Пакет бизнес-карт", formatMoney(businessPayout)],
-  ["Два заёмных предложения", formatMoney(loanPayout * 2)],
+  ["Два МФО-предложения", formatMoney(loanPayout * 2)],
 ];
 
 const categoryCards = [
@@ -31,13 +31,13 @@ const categoryCards = [
     number: "02",
     label: "Пакет бизнес-карт",
     amount: formatMoney(businessPayout),
-    note: "Только полным пакетом после выполнения условий",
+    note: "18+. За пять сделанных бизнес-карт",
   },
   {
     number: "03",
-    label: "Заёмные предложения",
+    label: "МФО",
     amount: `от ${formatMoney(loanPayout)}`,
-    note: "Только 18+ после изучения обязательных условий",
+    note: "18+ после выполнения обязательных условий",
   },
 ];
 
@@ -76,7 +76,7 @@ function HeroVisual() {
         <div className="calc-preview-head">
           <span>Пример расчёта</span>
         </div>
-        <p>До {formatMoney(exampleTotal)} при доступности выбранных предложений</p>
+        <p>До {formatMoney(exampleTotal)} при выборе этих предложений</p>
         <strong>До {formatMoney(exampleTotal)}</strong>
         <div className="calc-example-list">
           {exampleRows.map(([label, amount]) => (
@@ -87,8 +87,8 @@ function HeroVisual() {
           ))}
         </div>
         <small>
-          Это пример. Персональная сумма зависит от возраста, статуса нового клиента и
-          выбранных предложений.
+          Это пример. Сумма зависит от возраста, статуса для банка: новый клиент или
+          старый.
         </small>
       </div>
     </div>
@@ -144,8 +144,8 @@ export default function Home() {
               <h2>Разные продукты — разные условия</h2>
             </div>
             <p>
-              Итог зависит от возраста, истории взаимодействия с банками и выполнения
-              целевых действий. Калькулятор исключит заведомо неподходящие варианты.
+              Итог зависит от возраста, статуса в банке и выполнения целевого действия.
+              Калькулятор исключит заведомо неподходящие варианты.
             </p>
           </div>
           <div className="category-grid">
