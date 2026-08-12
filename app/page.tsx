@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check, CloseIcon, Shield } from "@/components/icons";
 import { CtaBand } from "@/components/CtaBand";
@@ -109,16 +108,7 @@ export default function Home() {
         <div className="container hero-grid">
           <div className="hero-copy">
             <div className="hero-brand">
-              <span className="hero-logo">
-                <Image
-                  src="/mr-logo-header.webp"
-                  alt="Логотип MR"
-                  width={84}
-                  height={84}
-                  priority
-                  unoptimized
-                />
-              </span>
+              <span className="hero-logo" aria-hidden="true">MR</span>
               <span>MoneyRoad</span>
             </div>
             <h1>Узнай свою потенциальную выручку за сделанные финансовые продукты</h1>
