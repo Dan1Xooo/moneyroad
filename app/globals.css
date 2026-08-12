@@ -1823,6 +1823,27 @@ h3 {
   color: var(--ink);
 }
 
+.mfo-quantity {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.mfo-quantity > span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  font-weight: 720;
+}
+
+.mfo-quantity .segmented-control {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mfo-quantity small {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.72rem;
+}
+
 .business-confirmation {
   margin-bottom: 18px;
   border: 1px solid rgba(255, 210, 28, 0.22);
