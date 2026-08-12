@@ -104,6 +104,47 @@ function HeroVisual() {
   );
 }
 
+function CategoryProductVisual({ type }: { type: string }) {
+  if (type === "debit") {
+    return (
+      <div className="category-product category-product-debit" aria-hidden="true">
+        <div className="product-card product-card-back" />
+        <div className="product-card product-card-main">
+          <span className="product-card-label">DEBIT</span>
+          <span className="product-card-chip" />
+          <span className="product-card-contactless" />
+          <span className="product-card-line" />
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "business") {
+    return (
+      <div className="category-product category-product-business" aria-hidden="true">
+        <div className="business-stack-card business-stack-card-light" />
+        <div className="business-stack-card business-stack-card-mid" />
+        <div className="business-stack-card business-stack-card-main">
+          <span>MR</span>
+          <b>BUSINESS</b>
+          <i />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="category-product category-product-mfo" aria-hidden="true">
+      <div className="mfo-document">
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className="mfo-badge">18+</div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main>
@@ -154,14 +195,7 @@ export default function Home() {
                 <div className="category-card-head">
                   <span className="card-number">{item.number}</span>
                 </div>
-                <div
-                  className={`category-visual category-visual-${item.visual}`}
-                  aria-hidden="true"
-                >
-                  <span />
-                  <span />
-                  <span />
-                </div>
+                <CategoryProductVisual type={item.visual} />
                 <div>
                   <h3>{item.label}</h3>
                   <strong>{item.amount}</strong>
