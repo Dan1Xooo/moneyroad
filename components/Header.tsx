@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -23,16 +22,7 @@ export function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand" aria-label="MoneyRoad — главная">
-          <span className="brand-logo">
-            <Image
-              src="/mr-logo-header.webp"
-              alt=""
-              width={48}
-              height={48}
-              priority
-              unoptimized
-            />
-          </span>
+          <span className="brand-logo" aria-hidden="true">MR</span>
           <span>MoneyRoad</span>
         </Link>
 
