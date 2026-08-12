@@ -51,7 +51,7 @@ export function Footer() {
                 Канал с отзывами <ArrowUpRight />
               </a>
               <a href="https://t.me/DanIlMoneyRoad" target="_blank" rel="noreferrer">
-                Связаться с Данилом <ArrowUpRight />
+                Связаться со мной <ArrowUpRight />
               </a>
             </div>
           </div>
@@ -62,7 +62,7 @@ export function Footer() {
             Информация на сайте носит ознакомительный характер. MoneyRoad не является
             банком, кредитной или микрофинансовой организацией. Предложения, условия и
             размеры вознаграждений могут изменяться. Решение об оформлении любого
-            продукта пользователь принимает самостоятельно.
+            продукта ты принимаешь самостоятельно.
           </p>
           <p>© {new Date().getFullYear()} MoneyRoad</p>
         </div>
