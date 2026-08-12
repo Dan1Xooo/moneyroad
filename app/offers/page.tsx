@@ -64,8 +64,8 @@ export default function OffersPage() {
                           <p className="catalog-summary">{offer.description}</p>
                         </div>
                         <strong>
-                          {offer.payoutPrefix && `${offer.payoutPrefix} `}
-                          {formatMoney(offer.payout)}
+                          {offer.catalogPayoutLabel ||
+                            `${offer.payoutPrefix && `${offer.payoutPrefix} `}${formatMoney(offer.payout)}`}
                         </strong>
                       </div>
                       <dl className="offer-facts offer-facts-compact">

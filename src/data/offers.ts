@@ -7,6 +7,7 @@ export type Offer = {
   shortName: string;
   payout: number;
   payoutLabel?: string;
+  catalogPayoutLabel?: string;
   catalogNote?: string;
   payoutPrefix: "" | "от";
   ageMin: number;
@@ -27,14 +28,15 @@ export const offers: Offer[] = [
     name: "Дебетовая карта Альфа-Банка",
     shortName: "Альфа-Банк",
     payout: 1000,
-    payoutLabel: "1000 ₽ гарантировано + 1450 ₽ через написание отзывов",
+    payoutLabel: "1 000 ₽ за оформление + до 1 450 ₽ за отзывы",
+    catalogPayoutLabel: "до 2 450 ₽",
     catalogNote: "",
     payoutPrefix: "",
     ageMin: 14,
     newClientOnly: true,
     active: true,
     description:
-      "1000 ₽ даётся за оформление после выполнения целевого действия. Ещё 1450 ₽ можно получить за написание отзывов.",
+      "1 000 ₽ за оформление после выполнения целевого действия + до 1 450 ₽ за написание отзывов.",
     conditions: [
       "Только для нового клиента Альфа-Банка",
       "Получить физическую карту",
@@ -52,14 +54,15 @@ export const offers: Offer[] = [
     name: "Дебетовая карта Т-Банка",
     shortName: "Т-Банк",
     payout: 1000,
-    payoutLabel: "1000 ₽ гарантировано + 1000 ₽ через написание отзывов",
+    payoutLabel: "1 000 ₽ за оформление + до 1 000 ₽ за отзывы",
+    catalogPayoutLabel: "до 2 000 ₽",
     catalogNote: "",
     payoutPrefix: "",
     ageMin: 14,
     newClientOnly: true,
     active: true,
     description:
-      "1000 ₽ можно получить за выполнение целевого действия. Ещё 1000 ₽ можно получить за написание отзывов.",
+      "1 000 ₽ за выполнение целевого действия + до 1 000 ₽ за написание отзывов.",
     conditions: [
       "Только для нового клиента Т-Банка",
       "Получить физическую карту",
