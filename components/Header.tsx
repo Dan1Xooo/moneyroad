@@ -18,7 +18,6 @@ const navItems = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isHome = pathname === "/";
 
   return (
     <header className="site-header">
@@ -49,11 +48,9 @@ export function Header() {
           ))}
         </nav>
 
-        {!isHome && (
-          <Link href="/calculator" className="button button-yellow header-cta">
-            Рассчитать сумму
-          </Link>
-        )}
+        <Link href="/calculator" className="button button-yellow header-cta">
+          Рассчитать сумму
+        </Link>
 
         <button
           className="menu-button"
@@ -82,15 +79,13 @@ export function Header() {
             <Link href="/safety" className="mobile-link" onClick={() => setOpen(false)}>
               Безопасность
             </Link>
-            {!isHome && (
-              <Link
-                href="/calculator"
-                className="button button-yellow mobile-menu-cta"
-                onClick={() => setOpen(false)}
-              >
-                Рассчитать сумму
-              </Link>
-            )}
+            <Link
+              href="/calculator"
+              className="button button-yellow mobile-menu-cta"
+              onClick={() => setOpen(false)}
+            >
+              Рассчитать сумму
+            </Link>
           </nav>
         </div>
       )}
